@@ -9,6 +9,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
+
+# даём скрипту права на исполнение
 RUN chmod +x /app/entrypoint.sh
 
+# используем entrypoint, а НЕ CMD
 ENTRYPOINT ["/app/entrypoint.sh"]
