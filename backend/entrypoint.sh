@@ -10,6 +10,8 @@ User = get_user_model()
 if not User.objects.filter(username='admin').exists():
     User.objects.create_superuser('admin', 'admin@example.com', '$DJANGO_SUPERUSER_PASSWORD')
 EOF
+echo "Collecting static..."
+python manage.py collectstatic --noinput
 
 echo "Starting Gunicorn..."
 gunicorn config.wsgi:application --bind 0.0.0.0:8000
